@@ -11,11 +11,13 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class TabbedActivity extends AppCompatActivity {
 
     TextView title;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +31,16 @@ public class TabbedActivity extends AppCompatActivity {
             title.setText("Welcome "+ username);
         }
 
+
+
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+
+
 
 
     }

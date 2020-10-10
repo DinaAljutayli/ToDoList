@@ -1,7 +1,5 @@
 package com.example.todolist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     DatabaseHelper db;
@@ -17,7 +17,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText password_editext_login;
     TextView register_textview;
     Button loginbutton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

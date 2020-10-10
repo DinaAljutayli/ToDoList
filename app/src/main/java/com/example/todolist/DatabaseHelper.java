@@ -15,7 +15,7 @@ import com.example.todolist.ui.main.Fragment2;
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME ="App.db";
     public static final String TABLE_NAME ="registeruser";
-    public static final String TABLE_NAME2 ="groceryList";
+    public static final String TABLE_NAME2 ="grocerylist";
 
     public static final String COL_1 ="Username";
     public static final String COL_2 ="Email";
@@ -37,10 +37,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                     GroceryEntry.COLUMN_AMOUNT + " INTEGER NOT NULL, " +
                     GroceryEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                     ");";
+            sqLiteDatabase.execSQL(SQL_CREATE_GROCERYLIST_TABLE);
 
 
             sqLiteDatabase.execSQL("CREATE TABLE registeruser (Username TEXT PRIMARY  KEY , Email TEXT, password TEXT)");
-            sqLiteDatabase.execSQL(SQL_CREATE_GROCERYLIST_TABLE);
+
     }
 
     @Override

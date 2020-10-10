@@ -35,6 +35,7 @@ public class Fragment2 extends Fragment {
     EditText mEditTextName;
     SQLiteDatabase mDatabase;
     GroceryAdapter mAdapter;
+    RecyclerView recyclerView;
     int mAmount=0;
 
     @Override
@@ -43,23 +44,10 @@ public class Fragment2 extends Fragment {
 
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
         mDatabase = dbHelper.getWritableDatabase();
-        RecyclerView recyclerView = v.findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter = new GroceryAdapter(getActivity(), getAllItems());
+        recyclerView = v.findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(mAdapter);
-
-
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                removeItem((long) viewHolder.itemView.getTag());
-            }
-        }).attachToRecyclerView(recyclerView);
 
 
         mEditTextName = v.findViewById(R.id.edittext_name);
@@ -86,6 +74,9 @@ public class Fragment2 extends Fragment {
             }
         });
 
+        onDelete();
+
+
         return v;
     }
     private void increase() {
@@ -110,11 +101,7 @@ public class Fragment2 extends Fragment {
         mAdapter.swapCursor(getAllItems());
         mEditTextName.getText().clear();
     }
-    private void removeItem(long id) {
-        mDatabase.delete(GroceryContract.GroceryEntry.TABLE_NAME2,
-                GroceryContract.GroceryEntry._ID + "=" + id, null);
-        mAdapter.swapCursor(getAllItems());
-    }
+
     private Cursor getAllItems() {
         return mDatabase.query(
                 GroceryContract.GroceryEntry.TABLE_NAME2,
@@ -126,6 +113,31 @@ public class Fragment2 extends Fragment {
                 GroceryContract.GroceryEntry.COLUMN_TIMESTAMP + " DESC"
         );
     }
+
+    public void onDelete(){
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+               mDatabase.delete(GroceryContract.GroceryEntry.TABLE_NAME2,
+                       GroceryContract.GroceryEntry._ID + "=" + (int)viewHolder.itemView.getTag(),null );
+
+                mAdapter.swapCursor(getAllItems());
+            }
+        }).attachToRecyclerView(recyclerView);
+    }
+
+    private void removeItem(long id) {
+        mDatabase.delete(GroceryContract.GroceryEntry.TABLE_NAME2,
+                GroceryContract.GroceryEntry._ID + "=" + id, null);
+        mAdapter.swapCursor(getAllItems());
+    }
+
+
 
 
 }

@@ -2,6 +2,7 @@ package com.example.todolist;
 
 import android.os.Bundle;
 
+import com.example.todolist.ui.main.Fragment2;
 import com.example.todolist.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,6 +39,8 @@ public class TabbedActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+
 
 
 

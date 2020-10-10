@@ -13,4 +13,6 @@
     <string name="tab_text_1">To Do List</string>
     <string name="tab_text_2">Groceries</string>
     <string name="tab_text_3">Calendar</string>
+    <string name="_0">0</string>
+    <string name="add">add</string>
 </resources>

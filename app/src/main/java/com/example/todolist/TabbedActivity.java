@@ -1,27 +1,29 @@
 package com.example.todolist;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
+import com.example.todolist.ui.main.Fragment2;
 import com.example.todolist.ui.main.SectionsPagerAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 
-
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class TabbedActivity extends AppCompatActivity {
 
     TextView title;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
-
-
         title = findViewById(R.id.title);
         Bundle extras = getIntent().getExtras();
         String username = null;
@@ -29,6 +31,7 @@ public class TabbedActivity extends AppCompatActivity {
             username=extras.getString("username");
             title.setText("Welcome "+ username);
         }
+
 
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
@@ -40,7 +43,8 @@ public class TabbedActivity extends AppCompatActivity {
 
 
 
+
+
+
     }
-
-
 }

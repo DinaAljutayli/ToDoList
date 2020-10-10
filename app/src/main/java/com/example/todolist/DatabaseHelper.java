@@ -6,10 +6,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+
+import com.example.todolist.GroceryContract.*;
+import com.example.todolist.ui.main.Fragment2;
+
+
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME ="App.db";
     public static final String TABLE_NAME ="registeruser";
-    public static final String TABLE_NAME2 ="";
+    public static final String TABLE_NAME2 ="groceryList";
 
     public static final String COL_1 ="Username";
     public static final String COL_2 ="Email";
@@ -19,14 +25,28 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, 1);
     }
 
+
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE registeruser (Username TEXT PRIMARY  KEY , Email TEXT, password TEXT)");
+
+            final String SQL_CREATE_GROCERYLIST_TABLE = "CREATE TABLE " +
+                    GroceryEntry.TABLE_NAME2 + " (" +
+                    GroceryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    GroceryEntry.COLUMN_NAME + " TEXT NOT NULL, " +
+                    GroceryEntry.COLUMN_AMOUNT + " INTEGER NOT NULL, " +
+                    GroceryEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                    ");";
+
+
+            sqLiteDatabase.execSQL("CREATE TABLE registeruser (Username TEXT PRIMARY  KEY , Email TEXT, password TEXT)");
+            sqLiteDatabase.execSQL(SQL_CREATE_GROCERYLIST_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + GroceryEntry.TABLE_NAME2);
         onCreate(sqLiteDatabase);
     }
 

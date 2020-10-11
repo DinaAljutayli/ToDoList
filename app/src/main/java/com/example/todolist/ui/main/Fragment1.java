@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolist.Adapter.ToDoAdapter;
+import com.example.todolist.AddNewTask;
 import com.example.todolist.DatabaseHelper;
 import com.example.todolist.DialogCloseListener;
 import com.example.todolist.Model.ToDoModel;
@@ -47,12 +48,12 @@ public class Fragment1 extends Fragment implements DialogCloseListener {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+      //  getActivity().setContentView(R.layout.fragment1_layout);
         View v =inflater.inflate(R.layout.fragment1_layout, container, false);
 
+      //  getActivity().setContentView();
 
-        //setContentView(R.layout.fragment1_layout);
-        //Objects.requireNonNull(getSupportActionBar()).hide();
+       // Objects.requireNonNull(getSupportActionBar()).hide();
 
         db = new DatabaseHelper(getContext());
         tasksAdapter = new ToDoAdapter(db,Fragment1.this);
@@ -74,7 +75,7 @@ public class Fragment1 extends Fragment implements DialogCloseListener {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+               AddNewTask.newInstance().show(getActivity().getSupportFragmentManager(), AddNewTask.TAG);
 
             }
         });
@@ -84,10 +85,10 @@ public class Fragment1 extends Fragment implements DialogCloseListener {
 
 
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+   // public void onCreate(Bundle savedInstanceState) {
+     //   super.onCreate(savedInstanceState);
+        //getActivity().setContentView(R.layout.fragment1_layout);
+    //}
     @Override
     public void handleDialogClose(DialogInterface dialog){
         taskList = db.getAllTasks();

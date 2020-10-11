@@ -24,11 +24,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     private List<ToDoModel> todoList;
     private DatabaseHelper db;
-    private TabbedActivity activity;
+    private Fragment1 fragment1;
+    TabbedActivity activity;
+
 
     public ToDoAdapter(DatabaseHelper db, Fragment1 fragment1) {
         this.db = db;
-        this.activity = activity;
+        this.fragment1 = fragment1;
     }
 
 
@@ -38,6 +40,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.task_layout, parent, false);
         return new ViewHolder(itemView);
+
     }
 
     @Override
@@ -57,6 +60,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                 }
             }
         });
+
+
     }
 
     private boolean toBoolean(int n) {
@@ -69,7 +74,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     public Context getContext() {
-        return activity;
+        return fragment1.getContext();
     }
 
     public void setTasks(List<ToDoModel> todoList) {
@@ -84,14 +89,21 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
+
     public void editItem(int position) {
+
         ToDoModel item = todoList.get(position);
         Bundle bundle = new Bundle();
         bundle.putInt("id", item.getId());
         bundle.putString("task", item.getTask());
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
-        fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
+
+        //fragment.show((TabbedActivity)fragment1.getSupportFragmentManager(), AddNewTask.TAG);
+        //fragment.show(x.getSupportFragmentManager(),AddNewTask.TAG);
+        fragment.show(fragment1.getChildFragmentManager(),AddNewTask.TAG);
+
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

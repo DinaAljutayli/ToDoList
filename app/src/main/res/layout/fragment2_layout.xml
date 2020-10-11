@@ -66,9 +66,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textview_amount" />
+        android:layout_width="406dp"
+        android:layout_height="541dp"
+        android:layout_below="@+id/textview_amount"
+        android:layout_marginTop="45dp" />
 
 
 </RelativeLayout>

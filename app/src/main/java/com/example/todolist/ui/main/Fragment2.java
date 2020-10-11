@@ -23,6 +23,8 @@ import com.example.todolist.GroceryAdapter;
 import com.example.todolist.GroceryContract;
 import com.example.todolist.R;
 
+
+
 public class Fragment2 extends Fragment {
 
 
@@ -42,13 +44,14 @@ public class Fragment2 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment2_layout, container, false);
 
-        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
+        DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         mDatabase = dbHelper.getWritableDatabase();
-        mAdapter = new GroceryAdapter(getActivity(), getAllItems());
+        mAdapter = new GroceryAdapter(getContext(), getAllItems());
         recyclerView = v.findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
 
+        onDelete();
 
         mEditTextName = v.findViewById(R.id.edittext_name);
         mTextViewAmount = v.findViewById(R.id.textview_amount);
@@ -74,11 +77,12 @@ public class Fragment2 extends Fragment {
             }
         });
 
-        onDelete();
 
 
         return v;
     }
+
+
     private void increase() {
         mAmount++;
         mTextViewAmount.setText(String.valueOf(mAmount));
@@ -123,19 +127,27 @@ public class Fragment2 extends Fragment {
             }
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-               mDatabase.delete(GroceryContract.GroceryEntry.TABLE_NAME2,
-                       GroceryContract.GroceryEntry._ID + "=" + (int)viewHolder.itemView.getTag(),null );
 
-                mAdapter.swapCursor(getAllItems());
+                removeItem((long)viewHolder.itemView.getTag());
+
             }
         }).attachToRecyclerView(recyclerView);
     }
+
+
+
 
     private void removeItem(long id) {
         mDatabase.delete(GroceryContract.GroceryEntry.TABLE_NAME2,
                 GroceryContract.GroceryEntry._ID + "=" + id, null);
         mAdapter.swapCursor(getAllItems());
+
+
+
+
+
     }
+
 
 
 

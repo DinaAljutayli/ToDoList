@@ -14,9 +14,6 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryV
     private Context mContext;
     private Cursor mCursor;
 
-    public GroceryAdapter(){
-
-    }
 
     public GroceryAdapter(Context context, Cursor cursor) {
         mContext = context;
@@ -25,6 +22,8 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryV
     public class GroceryViewHolder extends RecyclerView.ViewHolder {
         public TextView nameText;
         public TextView countText;
+
+
         public GroceryViewHolder(View itemView) {
             super(itemView);
             nameText = itemView.findViewById(R.id.textview_name_item);
@@ -44,8 +43,13 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryV
         }
         String name = mCursor.getString(mCursor.getColumnIndex(GroceryContract.GroceryEntry.COLUMN_NAME));
         int amount = mCursor.getInt(mCursor.getColumnIndex(GroceryContract.GroceryEntry.COLUMN_AMOUNT));
+
+        long id = mCursor.getLong(mCursor.getColumnIndex(GroceryContract.GroceryEntry._ID));
+
         holder.nameText.setText(name);
         holder.countText.setText(String.valueOf(amount));
+        holder.itemView.setTag(id);
+
     }
     @Override
     public int getItemCount() {
@@ -60,4 +64,6 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryV
             notifyDataSetChanged();
         }
     }
+
+
 }

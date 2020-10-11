@@ -15,7 +15,7 @@ import com.example.todolist.ui.main.Fragment2;
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME ="App.db";
     public static final String TABLE_NAME ="registeruser";
-    public static final String TABLE_NAME2 ="grocerylist";
+
 
     public static final String COL_1 ="Username";
     public static final String COL_2 ="Email";

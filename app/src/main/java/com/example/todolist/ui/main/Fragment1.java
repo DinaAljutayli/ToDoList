@@ -29,10 +29,7 @@ import java.util.List;
 public class Fragment1 extends Fragment implements DialogCloseListener {
 
 
-
     public Fragment1(){
-
-
 
     }
 
@@ -44,9 +41,65 @@ public class Fragment1 extends Fragment implements DialogCloseListener {
     private FloatingActionButton fab;
 
     private List<ToDoModel> taskList;
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 
 
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View v =inflater.inflate(R.layout.fragment1_layout, container, false);
+
+
+        //setContentView(R.layout.fragment1_layout);
+        //Objects.requireNonNull(getSupportActionBar()).hide();
+
+        db = new DatabaseHelper(getContext());
+        tasksAdapter = new ToDoAdapter(db,Fragment1.this);
+        db.openDatabase();
+        tasksRecyclerView = v.findViewById(R.id.tasksRecyclerView);
+        tasksRecyclerView.setLayoutManager(new LinearLayoutManager( getContext()));
+        tasksRecyclerView.setAdapter(tasksAdapter);
+
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
+
+        fab = v.findViewById(R.id.fab);
+
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+
+        tasksAdapter.setTasks(taskList);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+
+            }
+        });
+        return v;
+    }
+
+
+
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+    @Override
+    public void handleDialogClose(DialogInterface dialog){
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
+        tasksAdapter.notifyDataSetChanged();
+    }
+
+}
+
+
+/*
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,8 +110,7 @@ public class Fragment1 extends Fragment implements DialogCloseListener {
         tasksRecyclerView = v.findViewById(R.id.tasksRecyclerView);
 
 
-      //  tasksAdapter = new ToDoAdapter(db,
-         //       Fragment1.this);
+        tasksAdapter = new ToDoAdapter(db,);
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         ItemTouchHelper itemTouchHelper = new
@@ -75,7 +127,7 @@ public class Fragment1 extends Fragment implements DialogCloseListener {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+                AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
             }
         });
 
@@ -84,17 +136,5 @@ public class Fragment1 extends Fragment implements DialogCloseListener {
 
         return v;
 
-    }
-
-
-    @Override
-    public void handleDialogClose(DialogInterface dialog){
-        taskList = db.getAllTasks();
-        Collections.reverse(taskList);
-        tasksAdapter.setTasks(taskList);
-        tasksAdapter.notifyDataSetChanged();
-    }
-
-}
-
+    }*/
 

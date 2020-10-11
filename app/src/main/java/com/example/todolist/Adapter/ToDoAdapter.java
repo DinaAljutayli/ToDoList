@@ -11,10 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolist.AddNewTask;
-import com.example.todolist.TabbedActivity;
+import com.example.todolist.DatabaseHelper;
 import com.example.todolist.Model.ToDoModel;
 import com.example.todolist.R;
-import com.example.todolist.DatabaseHelper;
+import com.example.todolist.TabbedActivity;
+import com.example.todolist.ui.main.Fragment1;
 
 import java.util.List;
 
@@ -25,10 +26,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private DatabaseHelper db;
     private TabbedActivity activity;
 
-    public ToDoAdapter(DatabaseHelper db, TabbedActivity activity) {
+    public ToDoAdapter(DatabaseHelper db, Fragment1 fragment1) {
         this.db = db;
         this.activity = activity;
     }
+
 
     @NonNull
     @Override

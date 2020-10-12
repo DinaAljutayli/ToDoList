@@ -13,8 +13,8 @@
         android:layout_height="622dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="109dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="111dp"
+        android:layout_marginBottom="-2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,21 +22,20 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="112dp"
-        android:layout_height="286dp"
+        android:layout_width="45dp"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="328dp"
-        android:layout_marginLeft="328dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginLeft="210dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginBottom="115dp"
         android:src="@drawable/ic_baseline_add"
         app:backgroundTint="#61AE7F7F" />
 
 </RelativeLayout>
-

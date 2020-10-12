@@ -2,6 +2,7 @@ package com.example.todolist;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
     private Button newTaskSaveButton;
+
+    Cursor mCursor;
 
     private DatabaseHelper db;
 
@@ -122,4 +125,6 @@ public class AddNewTask extends BottomSheetDialogFragment {
         if(activity instanceof DialogCloseListener)
             ((DialogCloseListener)activity).handleDialogClose(dialog);
     }
+
+
 }

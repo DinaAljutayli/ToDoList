@@ -1,5 +1,4 @@
 package com.example.todolist;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -39,14 +38,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-            final String SQL_CREATE_GROCERYLIST_TABLE = "CREATE TABLE " +
-                    GroceryEntry.TABLE_NAME2 + " (" +
-                    GroceryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    GroceryEntry.COLUMN_NAME + " TEXT NOT NULL, " +
-                    GroceryEntry.COLUMN_AMOUNT + " INTEGER NOT NULL, " +
-                    GroceryEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
-                    ");";
-            sqLiteDatabase.execSQL(SQL_CREATE_GROCERYLIST_TABLE);
+        final String SQL_CREATE_GROCERYLIST_TABLE = "CREATE TABLE " +
+                GroceryEntry.TABLE_NAME2 + " (" +
+                GroceryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                GroceryEntry.COLUMN_NAME + " TEXT NOT NULL, " +
+                GroceryEntry.COLUMN_AMOUNT + " INTEGER NOT NULL, " +
+                GroceryEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ");";
+        sqLiteDatabase.execSQL(SQL_CREATE_GROCERYLIST_TABLE);
 
         final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE  + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, "
                 + STATUS + " INTEGER)";
@@ -125,8 +124,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         finally {
             db.endTransaction();
-            assert cur != null;
-            cur.close();
+
+                assert cur != null;
+                cur.close();
+
         }
         return taskList;
     }
@@ -148,5 +149,3 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
 }
-
-

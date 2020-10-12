@@ -1,5 +1,6 @@
 package com.example.todolist.Adapter;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private List<ToDoModel> todoList;
     private DatabaseHelper db;
     private Fragment1 fragment1;
-    TabbedActivity activity;
+    Cursor mCursor;
+
 
 
     public ToDoAdapter(DatabaseHelper db, Fragment1 fragment1) {
@@ -60,6 +62,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                 }
             }
         });
+
+        //trying
+
 
 
     }
@@ -98,10 +103,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         bundle.putString("task", item.getTask());
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
-
-        //fragment.show((TabbedActivity)fragment1.getSupportFragmentManager(), AddNewTask.TAG);
-        //fragment.show(x.getSupportFragmentManager(),AddNewTask.TAG);
         fragment.show(fragment1.getChildFragmentManager(),AddNewTask.TAG);
+
+        //trying
+        notifyDataSetChanged();
 
 
     }
@@ -114,4 +119,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
             task = view.findViewById(R.id.todoCheckBox);
         }
     }
+
+
+
+
 }

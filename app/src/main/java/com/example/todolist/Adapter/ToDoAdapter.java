@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolist.AddNewTask;
 import com.example.todolist.DatabaseHelper;
+import com.example.todolist.GroceryContract;
 import com.example.todolist.Model.ToDoModel;
 import com.example.todolist.R;
-import com.example.todolist.TabbedActivity;
 import com.example.todolist.ui.main.Fragment1;
+import com.example.todolist.ui.main.Fragment3;
 
 import java.util.List;
 
@@ -25,14 +26,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     private List<ToDoModel> todoList;
     private DatabaseHelper db;
-    private Fragment1 fragment1;
-    Cursor mCursor;
+    private Fragment3 fragment3;
 
 
 
-    public ToDoAdapter(DatabaseHelper db, Fragment1 fragment1) {
+
+    public ToDoAdapter(DatabaseHelper db, Fragment3 fragment3) {
         this.db = db;
-        this.fragment1 = fragment1;
+        this.fragment3 = fragment3;
     }
 
 
@@ -46,7 +47,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder( final ViewHolder holder, int position) {
         db.openDatabase();
 
         final ToDoModel item = todoList.get(position);
@@ -63,10 +64,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
             }
         });
 
-        //trying
-
-
-
     }
 
     private boolean toBoolean(int n) {
@@ -79,7 +76,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     public Context getContext() {
-        return fragment1.getContext();
+        //.getContext()
+        return fragment3.getActivity();
     }
 
     public void setTasks(List<ToDoModel> todoList) {
@@ -103,10 +101,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         bundle.putString("task", item.getTask());
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
-        fragment.show(fragment1.getChildFragmentManager(),AddNewTask.TAG);
+        fragment.show(fragment3.getChildFragmentManager(),AddNewTask.TAG);
 
-        //trying
-        notifyDataSetChanged();
 
 
     }
@@ -119,8 +115,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
             task = view.findViewById(R.id.todoCheckBox);
         }
     }
-
-
 
 
 }

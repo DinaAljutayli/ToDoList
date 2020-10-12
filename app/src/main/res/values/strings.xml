@@ -15,4 +15,5 @@
     <string name="tab_text_3">Calendar</string>
     <string name="_0">0</string>
     <string name="add">add</string>
+    <string name="adding">+</string>
 </resources>

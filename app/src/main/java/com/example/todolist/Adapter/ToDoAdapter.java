@@ -103,6 +103,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         fragment.setArguments(bundle);
         fragment.show(fragment3.getChildFragmentManager(),AddNewTask.TAG);
 
+        notifyDataSetChanged();
+
 
 
     }

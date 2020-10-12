@@ -121,6 +121,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     task.setTask(text);
                     task.setStatus(0);
                     db.insertTask(task);
+
                 }
                 dismiss();
             }

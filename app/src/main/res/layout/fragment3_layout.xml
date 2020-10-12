@@ -34,7 +34,7 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="32dp"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:tooltipText="@string/adding"
         />
+
 
 </RelativeLayout>
